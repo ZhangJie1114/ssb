@@ -1,0 +1,5 @@
+org\nm\test\model\Article.class
+org\nm\test\inter\IArticleOption.class
+org\nm\test\controler\TestController.class
+org\nm\test\inter\IUserOption.class
+org\nm\test\model\User.class
