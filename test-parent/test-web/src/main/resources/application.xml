@@ -13,7 +13,7 @@
 		http://www.springframework.org/schema/mvc
         http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd
 	">
-	
+	<!-- 自动扫描该包下的文件 -->
 	<context:component-scan base-package="org.zhangjie.test" />  
 	
 	<!-- 	加载资源文件 -->
@@ -24,12 +24,17 @@
 		<property name="driverClassName" value="${jdbc.driverClassName}"></property> 
 	    <property name="url" value="${jdbc.url}" />
 	    <property name="username" value="${jdbc.userName}" />
-	    <property name="password" value="${jdbc.password}" />
-	    <property name="filters" value="stat" />
+	    <property name="password" value="${jdbc.password}" />	    
+	    <!-- 初始化连接数 -->
+	    <property name="initialSize" value="${initialSize}" />
+	    <!-- 获取连接最长等待时间 --> 
+	    <property name="maxWait" value="${maxWait}" />
+	    <!-- 连接池最小空闲 --> 
+	    <property name="minIdle" value="${minIdle}" />
+	    <!-- 连接池最大空闲 -->  
+        <property name="maxIdle" value="${maxIdle}"></property>  
+        <property name="filters" value="stat" />
 	    <property name="maxActive" value="20" />
-	    <property name="initialSize" value="1" />
-	    <property name="maxWait" value="60000" />
-	    <property name="minIdle" value="1" />
 	    <property name="timeBetweenEvictionRunsMillis" value="60000" />
 	    <property name="minEvictableIdleTimeMillis" value="300000" />
 	    <property name="testWhileIdle" value="true" />
@@ -37,19 +42,25 @@
 	    <property name="testOnReturn" value="false" />
 	    <property name="poolPreparedStatements" value="true" />
 	    <property name="maxOpenPreparedStatements" value="20" />
-	</bean>
+	</bean>	
 	
-	
+	<!-- spring和MyBatis完美整合，不需要mybatis的配置映射文件 -->
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<!-- 指定数据库源 -->
 		<property name="dataSource" ref="dataSource" />
 		<!-- mybatis 配置文件 -->
 		<property name="configLocation" value="classpath:configuration.xml" />
+		 <!-- 自动扫描*.xml文件 -->
 		<property name="mapperLocations" value="classpath*:org/zhangjie/test/model/*.xml" />
 	</bean>
 	
-	<!-- 对象映射 -->
+	<!-- 对象映射，DAO接口所在包名，Spring会自动查找其下的类 -->
 	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
 		<property name="basePackage" value="org.zhangjie.test.inter" />     
 	</bean>
+<!-- 	(事务管理)transaction manager, use JtaTransactionManager for global tx   -->
+<!--     <bean id="transactionManager"   -->
+<!--         class="org.springframework.jdbc.datasource.DataSourceTransactionManager">   -->
+<!--         <property name="dataSource" ref="dataSource" />   -->
+<!--     </bean>   -->
 </beans>
