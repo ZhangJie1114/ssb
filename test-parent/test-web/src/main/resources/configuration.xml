@@ -3,7 +3,7 @@
 "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
 	<typeAliases>
-		<typeAlias type="org.nm.test.model.Article" alias="Article"/>
-		<typeAlias type="org.nm.test.model.User" alias="User"/>
+		<typeAlias type="org.zhangjie.test.model.Article" alias="Article"/>
+		<typeAlias type="org.zhangjie.test.model.User" alias="User"/>
 	</typeAliases>
 </configuration>

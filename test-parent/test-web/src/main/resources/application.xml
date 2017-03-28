@@ -14,7 +14,7 @@
         http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd
 	">
 	
-	<context:component-scan base-package="org.nm.test" />  
+	<context:component-scan base-package="org.zhangjie.test" />  
 	
 	<!-- 	加载资源文件 -->
 	<context:property-placeholder location="classpath:jdbc.properties" />
@@ -45,11 +45,11 @@
 		<property name="dataSource" ref="dataSource" />
 		<!-- mybatis 配置文件 -->
 		<property name="configLocation" value="classpath:configuration.xml" />
-		<property name="mapperLocations" value="classpath*:org/nm/test/model/*.xml" />
+		<property name="mapperLocations" value="classpath*:org/zhangjie/test/model/*.xml" />
 	</bean>
 	
 	<!-- 对象映射 -->
 	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-		<property name="basePackage" value="org.nm.test.inter" />     
+		<property name="basePackage" value="org.zhangjie.test.inter" />     
 	</bean>
 </beans>

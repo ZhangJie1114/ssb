@@ -17,7 +17,7 @@
     
     
 	<!--为controller等注解注册 -->
-    <context:component-scan base-package="org.nm.test" />
+    <context:component-scan base-package="org.zhangjie.test" />
     <!-- 	启用注解 -->
     <mvc:annotation-driven />
     
